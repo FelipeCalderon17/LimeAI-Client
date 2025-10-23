@@ -5,13 +5,16 @@ async function apiClient<T>(
   endpoint: string,
   options: RequestInit = {}
 ): Promise<T> {
-  const defaultHeaders: HeadersInit = {
-    "Content-Type": "application/json",
-    ...options.headers,
-  };
+  let headers: HeadersInit = { ...options.headers };
+  if (!(options.body instanceof FormData)) {
+    headers = {
+      "Content-Type": "application/json",
+      ...headers,
+    };
+  }
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
     ...options,
-    headers: defaultHeaders,
+    headers: headers,
   });
   if (!response.ok) {
     let errorData;

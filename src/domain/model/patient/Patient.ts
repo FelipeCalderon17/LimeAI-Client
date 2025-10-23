@@ -23,23 +23,4 @@ export class Patient {
   public getNotes(): Note[] {
     return this.notes;
   }
-
-  public getInitials(): string {
-    const parts = this.name.split(" ");
-    if (parts.length > 1) {
-      return `${parts[0][0]}${parts[parts.length - 1][0]}`.toUpperCase();
-    }
-    return this.name.substring(0, 2).toUpperCase();
-  }
-
-  public getAge(): number {
-    const today = new Date();
-    let age = today.getFullYear() - this.dateOfBirth.getFullYear();
-    const m = today.getMonth() - this.dateOfBirth.getMonth();
-
-    if (m < 0 || (m === 0 && today.getDate() < this.dateOfBirth.getDate())) {
-      age--;
-    }
-    return age;
-  }
 }

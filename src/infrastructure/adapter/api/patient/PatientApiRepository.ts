@@ -23,9 +23,4 @@ export class PatientApiRepository implements PatientRepository {
       throw new Error("Failed to fetch patients.");
     }
   }
-
-  async existsById(_id: string): Promise<boolean> {
-    // (Lo implementaremos cuando lo necesitemos)
-    return true;
-  }
 }
